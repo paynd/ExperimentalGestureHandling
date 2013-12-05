@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BiDirectionScrolling.iml" filepath="$PROJECT_DIR$/BiDirectionScrolling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../examples/InteractiveChart/InteractiveChart.iml" filepath="$PROJECT_DIR$/../examples/InteractiveChart/InteractiveChart.iml" />
     </modules>
   </component>
 </project>
