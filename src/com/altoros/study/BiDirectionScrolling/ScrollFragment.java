@@ -19,7 +19,7 @@ public class ScrollFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fregment_layout, null);
+        View view = inflater.inflate(R.layout.fragment_layout, null);
         return view;
     }
 
