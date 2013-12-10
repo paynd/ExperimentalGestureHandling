@@ -9,14 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class ScrollFragment extends Fragment {
     private LinearLayout mContainerView;
 
-    /*@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }*/
+    LinearLayout.LayoutParams fillLayoutParams = new LinearLayout.LayoutParams(
+            (LinearLayout.LayoutParams.MATCH_PARENT), (ViewGroup.LayoutParams.MATCH_PARENT));
+
+    LinearLayout.LayoutParams dp60LayoutParams = new LinearLayout.LayoutParams(
+            200, 200);
+
+    LinearLayout.LayoutParams categoriesTextViewLayoutParams = new LinearLayout.LayoutParams(
+            (LinearLayout.LayoutParams.WRAP_CONTENT), (ViewGroup.LayoutParams.WRAP_CONTENT));
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,16 +42,14 @@ public class ScrollFragment extends Fragment {
     private void inflateRow(int i) {
         Context context = getActivity();
 
-        LinearLayout.LayoutParams wrapLayoutParams = new LinearLayout.LayoutParams(
-                (LinearLayout.LayoutParams.WRAP_CONTENT), (ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        LinearLayout.LayoutParams fillLayoutParams = new LinearLayout.LayoutParams(
-                (LinearLayout.LayoutParams.MATCH_PARENT), (ViewGroup.LayoutParams.MATCH_PARENT));
-
-        LinearLayout.LayoutParams dp60LayoutParams = new LinearLayout.LayoutParams(
-                200, 200);
-
         LinearLayout rowContainer = (LinearLayout) getView().findViewById(R.id.container_main_discounts);
+
+        TextView categoryTextView = new TextView(context);
+        categoryTextView.setText("CategoryText");
+        categoriesTextViewLayoutParams.setMargins(5, 5, 5, 5);
+        categoryTextView.setLayoutParams(categoriesTextViewLayoutParams);
+
+        rowContainer.addView(categoryTextView);
 
         CustomHorizontalScrollView customHorizontalScrollView = new CustomHorizontalScrollView(context);
 
@@ -56,28 +59,36 @@ public class ScrollFragment extends Fragment {
         horizontal.setOrientation(LinearLayout.HORIZONTAL);
         horizontal.setLayoutParams(fillLayoutParams);
 
-        ImageView imageView1 = new ImageView(context);
-        ImageView imageView2 = new ImageView(context);
-        ImageView imageView3 = new ImageView(context);
-        ImageView imageView4 = new ImageView(context);
 
-        imageView1.setBackgroundColor(getResources().getColor(R.color.blue));
-        imageView2.setBackgroundColor(getResources().getColor(R.color.red));
-        imageView3.setBackgroundColor(getResources().getColor(R.color.brown));
-        imageView4.setBackgroundColor(getResources().getColor(R.color.green));
-
-        imageView1.setLayoutParams(dp60LayoutParams);
-        imageView2.setLayoutParams(dp60LayoutParams);
-        imageView3.setLayoutParams(dp60LayoutParams);
-        imageView4.setLayoutParams(dp60LayoutParams);
-
-        horizontal.addView(imageView1);
-        horizontal.addView(imageView2);
-        horizontal.addView(imageView3);
-        horizontal.addView(imageView4);
+        for (int j = 0; j < 4; j++) {
+            addProviderBanner(horizontal);
+        }
 
         customHorizontalScrollView.addView(horizontal);
 
         rowContainer.addView(customHorizontalScrollView, i, fillLayoutParams);
     }
+
+    private void addProviderBanner(ViewGroup container) {
+        Context context = getActivity();
+
+        ImageView imageView = new ImageView(context);
+        imageView.setBackgroundColor(getResources().getColor(R.color.blue));
+        dp60LayoutParams.setMargins(2, 2, 15, 2);
+        imageView.setLayoutParams(dp60LayoutParams);
+
+        container.addView(imageView);
+    }
+
+    private void addProviderPremiumBanner(ViewGroup container) {
+        Context context = getActivity();
+
+        ImageView imageView = new ImageView(context);
+        imageView.setBackgroundColor(getResources().getColor(R.color.blue));
+        dp60LayoutParams.setMargins(2, 2, 15, 2);
+        imageView.setLayoutParams(dp60LayoutParams);
+
+        container.addView(imageView);
+    }
+
 }
