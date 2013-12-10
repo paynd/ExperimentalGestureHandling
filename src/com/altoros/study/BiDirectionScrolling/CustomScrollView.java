@@ -41,12 +41,6 @@ public class CustomScrollView extends ScrollView {
         return super.onInterceptTouchEvent(event) && mGestureDetector.onTouchEvent(event);
     }
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        Log.d(TAG, "onTouchEvent. ME, action:" + event.getAction());
-//        return super.onTouchEvent(event) && mGestureDetector.onTouchEvent(event);
-//    }
-
     // Return false if we're scrolling in the x direction
     class YScrollDetector extends GestureDetector.SimpleOnGestureListener {
         @Override

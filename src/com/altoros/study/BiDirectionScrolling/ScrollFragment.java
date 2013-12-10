@@ -29,8 +29,12 @@ public class ScrollFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        inflateRow(0);
+        inflateRow(1);
+        inflateRow(2);
+    }
 
-        View view = getView();
+    private void inflateRow(int i) {
         Context context = getActivity();
 
         LinearLayout.LayoutParams wrapLayoutParams = new LinearLayout.LayoutParams(
@@ -42,7 +46,7 @@ public class ScrollFragment extends Fragment {
         LinearLayout.LayoutParams dp60LayoutParams = new LinearLayout.LayoutParams(
                 200, 200);
 
-        LinearLayout rowContainer = (LinearLayout) view.findViewById(R.id.container_main_discounts);
+        LinearLayout rowContainer = (LinearLayout) getView().findViewById(R.id.container_main_discounts);
 
         CustomHorizontalScrollView customHorizontalScrollView = new CustomHorizontalScrollView(context);
 
@@ -74,6 +78,6 @@ public class ScrollFragment extends Fragment {
 
         customHorizontalScrollView.addView(horizontal);
 
-        rowContainer.addView(customHorizontalScrollView, fillLayoutParams);
+        rowContainer.addView(customHorizontalScrollView, i, fillLayoutParams);
     }
 }
