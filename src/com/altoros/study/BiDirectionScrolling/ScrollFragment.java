@@ -18,28 +18,32 @@ public class ScrollFragment extends Fragment {
             (LinearLayout.LayoutParams.MATCH_PARENT), (ViewGroup.LayoutParams.MATCH_PARENT));
 
     LinearLayout.LayoutParams dp60LayoutParams = new LinearLayout.LayoutParams(
-            200, 200);
+            300, 150);
+
+    LinearLayout.LayoutParams endSquareLayoutParams = new LinearLayout.LayoutParams(
+            150, 150);
 
     LinearLayout.LayoutParams categoriesTextViewLayoutParams = new LinearLayout.LayoutParams(
             (LinearLayout.LayoutParams.WRAP_CONTENT), (ViewGroup.LayoutParams.WRAP_CONTENT));
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_custom_layout_manual, null);
-
-        return view;
+        return inflater.inflate(R.layout.fragment_custom_layout_manual, null);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        inflateRow(0);
-        inflateRow(1);
-        inflateRow(2);
+        inflateRow();
+        inflateRow();
+        inflateRow();
+        inflateRow();
+        inflateRow();
+        inflateRow();
+        inflateRow();
     }
 
-    private void inflateRow(int i) {
+    private void inflateRow() {
         Context context = getActivity();
 
         LinearLayout rowContainer = (LinearLayout) getView().findViewById(R.id.container_main_discounts);
@@ -60,13 +64,15 @@ public class ScrollFragment extends Fragment {
         horizontal.setLayoutParams(fillLayoutParams);
 
 
-        for (int j = 0; j < 4; j++) {
+        for (int j = 0; j < 7; j++) {
             addProviderBanner(horizontal);
         }
 
+        addCategoryEndBanner(horizontal);
+
         customHorizontalScrollView.addView(horizontal);
 
-        rowContainer.addView(customHorizontalScrollView, i, fillLayoutParams);
+        rowContainer.addView(customHorizontalScrollView, fillLayoutParams);
     }
 
     private void addProviderBanner(ViewGroup container) {
@@ -76,6 +82,17 @@ public class ScrollFragment extends Fragment {
         imageView.setBackgroundColor(getResources().getColor(R.color.blue));
         dp60LayoutParams.setMargins(2, 2, 15, 2);
         imageView.setLayoutParams(dp60LayoutParams);
+
+        container.addView(imageView);
+    }
+
+    private void addCategoryEndBanner(ViewGroup container) {
+        Context context = getActivity();
+
+        ImageView imageView = new ImageView(context);
+        imageView.setBackgroundColor(getResources().getColor(R.color.blue));
+        endSquareLayoutParams.setMargins(2, 2, 15, 2);
+        imageView.setLayoutParams(endSquareLayoutParams);
 
         container.addView(imageView);
     }
